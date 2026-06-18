@@ -1,0 +1,160 @@
+<svg width="1440" height="940" viewBox="0 0 1440 940" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="title desc">
+  <title id="title">Tomorrowland Scheduler mobile UI preview</title>
+  <desc id="desc">Three mobile screens showing the Now, Schedule, and My Plan tabs with dark outdoor-friendly styling, day pills, sync chip, performance cards, group avatars, and bottom tab navigation.</desc>
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1440" y2="940" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#070D15"/>
+      <stop offset="0.52" stop-color="#111B2A"/>
+      <stop offset="1" stop-color="#190B2D"/>
+    </linearGradient>
+    <linearGradient id="phone" x1="0" y1="0" x2="0" y2="820" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#0B1420"/>
+      <stop offset="1" stop-color="#081018"/>
+    </linearGradient>
+    <linearGradient id="card" x1="0" y1="0" x2="0" y2="180" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#122234"/>
+      <stop offset="1" stop-color="#0F1A27"/>
+    </linearGradient>
+    <filter id="shadow" x="-30" y="-30" width="430" height="900" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+      <feDropShadow dx="0" dy="24" stdDeviation="28" flood-color="#000" flood-opacity="0.38"/>
+    </filter>
+    <style>
+      .label{font-family:Inter,Arial,sans-serif;fill:#FFFFFF;font-weight:900}
+      .muted{font-family:Inter,Arial,sans-serif;fill:#AAB8C5;font-weight:700}
+      .tiny{font-family:Inter,Arial,sans-serif;fill:#C8D3DC;font-size:14px;font-weight:800}
+      .accent{fill:#18D2FF}
+      .green{fill:#B8F7D4}
+      .yellow{fill:#FFD166}
+      .pink{fill:#FF8FA3}
+      .pill{fill:#172432}
+      .active{fill:#7C4DFF}
+    </style>
+  </defs>
+  <rect width="1440" height="940" fill="url(#bg)"/>
+  <text x="72" y="86" class="label" font-size="44">Tomorrowland Scheduler</text>
+  <text x="72" y="124" class="muted" font-size="22">Mobile-first MVP preview: Now-first planning, virtualized schedule, saved sets, group signals, and offline state.</text>
+
+  <!-- Phone 1: Now -->
+  <g transform="translate(76 86)" filter="url(#shadow)">
+    <rect x="0" y="0" width="372" height="780" rx="42" fill="#05090F"/>
+    <rect x="14" y="14" width="344" height="752" rx="34" fill="url(#phone)"/>
+    <rect x="145" y="28" width="82" height="8" rx="4" fill="#26384A"/>
+    <text x="34" y="78" class="label" font-size="26">Tomorrowland</text>
+    <rect x="34" y="94" width="218" height="30" rx="15" class="green"/>
+    <text x="48" y="114" font-family="Inter,Arial" font-size="13" font-weight="900" fill="#061018">Synced · Europe/Brussels</text>
+    <g transform="translate(30 142)">
+      <rect width="84" height="42" rx="21" class="active"/><text x="18" y="27" class="tiny" fill="#FFF">Fri 17</text>
+      <rect x="96" width="84" height="42" rx="21" class="pill"/><text x="114" y="27" class="tiny">Sat 18</text>
+      <rect x="192" width="84" height="42" rx="21" class="pill"/><text x="210" y="27" class="tiny">Sun 19</text>
+    </g>
+    <text x="30" y="222" class="label" font-size="24">Playing now</text>
+    <g transform="translate(30 240)">
+      <rect width="312" height="128" rx="22" fill="url(#card)" stroke="#24384A"/>
+      <text x="18" y="34" class="label" font-size="21">Amelie Lens</text>
+      <text x="18" y="60" class="tiny">Atmosphere · 19:00–20:30 · Live now</text>
+      <text x="18" y="84" class="muted" font-size="14">Techno</text>
+      <rect x="192" y="22" width="96" height="46" rx="16" class="accent"/><text x="218" y="51" font-family="Inter,Arial" font-size="14" font-weight="900" fill="#041018">Going</text>
+      <circle cx="30" cy="106" r="14" class="yellow"/><text x="25" y="111" font-family="Inter,Arial" font-size="13" font-weight="900" fill="#061018">A</text>
+      <circle cx="52" cy="106" r="14" class="yellow"/><text x="47" y="111" font-family="Inter,Arial" font-size="13" font-weight="900" fill="#061018">B</text>
+      <text x="74" y="111" class="tiny">2 interested</text>
+      <text x="190" y="111" font-family="Inter,Arial" font-size="13" font-weight="900" fill="#FFD166">Pending sync</text>
+    </g>
+    <text x="30" y="406" class="label" font-size="24">Starting soon</text>
+    <g transform="translate(30 424)">
+      <rect width="312" height="112" rx="22" fill="url(#card)" stroke="#24384A"/>
+      <text x="18" y="34" class="label" font-size="20">Tale Of Us</text>
+      <text x="18" y="60" class="tiny">Freedom · 20:00–21:30 · Upcoming</text>
+      <rect x="186" y="22" width="108" height="46" rx="16" fill="#24384A"/><text x="200" y="51" class="tiny">I want to go</text>
+      <circle cx="30" cy="88" r="14" class="yellow"/><text x="25" y="93" font-family="Inter,Arial" font-size="13" font-weight="900" fill="#061018">A</text>
+      <circle cx="52" cy="88" r="14" class="yellow"/><text x="47" y="93" font-family="Inter,Arial" font-size="13" font-weight="900" fill="#061018">B</text>
+      <circle cx="74" cy="88" r="14" class="yellow"/><text x="69" y="93" font-family="Inter,Arial" font-size="13" font-weight="900" fill="#061018">S</text>
+      <text x="98" y="93" class="tiny">3 interested</text>
+    </g>
+    <text x="30" y="574" class="label" font-size="23">Popular with your group</text>
+    <g transform="translate(30 596)">
+      <rect width="312" height="70" rx="18" fill="#111E2C" stroke="#24384A"/>
+      <text x="18" y="30" class="label" font-size="18">Charlotte de Witte</text>
+      <text x="18" y="52" class="tiny">22:00 · Atmosphere · 4 interested</text>
+    </g>
+    <g transform="translate(14 694)">
+      <rect width="344" height="72" rx="0" fill="#0B1420"/>
+      <text x="28" y="43" class="tiny" fill="#18D2FF">Now</text><text x="92" y="43" class="tiny">Schedule</text><text x="174" y="43" class="tiny">My Plan</text><text x="254" y="43" class="tiny">Group</text><text x="304" y="43" class="tiny">Profile</text>
+    </g>
+  </g>
+
+  <!-- Phone 2: Schedule -->
+  <g transform="translate(534 86)" filter="url(#shadow)">
+    <rect x="0" y="0" width="372" height="780" rx="42" fill="#05090F"/>
+    <rect x="14" y="14" width="344" height="752" rx="34" fill="url(#phone)"/>
+    <rect x="145" y="28" width="82" height="8" rx="4" fill="#26384A"/>
+    <text x="34" y="78" class="label" font-size="26">Schedule</text>
+    <rect x="34" y="94" width="265" height="30" rx="15" fill="#FFD166"/><text x="48" y="114" font-family="Inter,Arial" font-size="13" font-weight="900" fill="#061018">Offline — showing saved schedule</text>
+    <g transform="translate(30 142)">
+      <rect width="84" height="42" rx="21" class="active"/><text x="18" y="27" class="tiny">Fri 17</text>
+      <rect x="96" width="84" height="42" rx="21" class="pill"/><text x="114" y="27" class="tiny">Sat 18</text>
+      <rect x="192" width="84" height="42" rx="21" class="pill"/><text x="210" y="27" class="tiny">Sun 19</text>
+    </g>
+    <rect x="30" y="204" width="312" height="50" rx="16" fill="#172432"/><text x="48" y="236" class="muted" font-size="16">Search artists, stages, genres</text>
+    <g transform="translate(30 270)">
+      <rect width="58" height="38" rx="19" class="active"/><text x="18" y="25" class="tiny">All</text>
+      <rect x="68" width="88" height="38" rx="19" class="pill"/><text x="83" y="25" class="tiny">My picks</text>
+      <rect x="166" width="102" height="38" rx="19" class="pill"/><text x="181" y="25" class="tiny">Mainstage</text>
+    </g>
+    <text x="30" y="344" class="tiny">19:00</text>
+    <g transform="translate(30 360)">
+      <rect width="312" height="118" rx="22" fill="url(#card)" stroke="#24384A"/>
+      <text x="18" y="34" class="label" font-size="20">Amelie Lens</text><text x="18" y="60" class="tiny">Atmosphere · 19:00–20:30 · Live now</text>
+      <rect x="192" y="22" width="96" height="46" rx="16" class="accent"/><text x="218" y="51" font-family="Inter,Arial" font-size="14" font-weight="900" fill="#041018">Going</text>
+      <text x="18" y="96" class="tiny">2 interested · Last updated 12 min ago</text>
+    </g>
+    <text x="30" y="516" class="tiny">20:00</text>
+    <g transform="translate(30 532)">
+      <rect width="312" height="118" rx="22" fill="url(#card)" stroke="#24384A"/>
+      <text x="18" y="34" class="label" font-size="20">Tale Of Us</text><text x="18" y="60" class="tiny">Freedom · 20:00–21:30 · Upcoming</text>
+      <rect x="184" y="22" width="110" height="46" rx="16" fill="#24384A"/><text x="199" y="51" class="tiny">I want to go</text>
+      <text x="18" y="96" class="tiny">3 interested</text>
+    </g>
+    <g transform="translate(14 694)">
+      <rect width="344" height="72" fill="#0B1420"/>
+      <text x="28" y="43" class="tiny">Now</text><text x="92" y="43" class="tiny" fill="#18D2FF">Schedule</text><text x="174" y="43" class="tiny">My Plan</text><text x="254" y="43" class="tiny">Group</text><text x="304" y="43" class="tiny">Profile</text>
+    </g>
+  </g>
+
+  <!-- Phone 3: My Plan -->
+  <g transform="translate(992 86)" filter="url(#shadow)">
+    <rect x="0" y="0" width="372" height="780" rx="42" fill="#05090F"/>
+    <rect x="14" y="14" width="344" height="752" rx="34" fill="url(#phone)"/>
+    <rect x="145" y="28" width="82" height="8" rx="4" fill="#26384A"/>
+    <text x="34" y="78" class="label" font-size="26">My Plan</text>
+    <rect x="34" y="94" width="218" height="30" rx="15" class="green"/><text x="48" y="114" font-family="Inter,Arial" font-size="13" font-weight="900" fill="#061018">Synced · Europe/Brussels</text>
+    <g transform="translate(30 142)">
+      <rect width="84" height="42" rx="21" class="active"/><text x="18" y="27" class="tiny">Fri 17</text>
+      <rect x="96" width="84" height="42" rx="21" class="pill"/><text x="114" y="27" class="tiny">Sat 18</text>
+      <rect x="192" width="84" height="42" rx="21" class="pill"/><text x="210" y="27" class="tiny">Sun 19</text>
+    </g>
+    <rect x="30" y="208" width="312" height="74" rx="22" fill="#172432"/>
+    <text x="50" y="236" class="label" font-size="20">3 saved sets</text>
+    <text x="50" y="260" class="tiny">1 conflict · 1 pending sync</text>
+    <g transform="translate(30 306)">
+      <rect width="312" height="134" rx="22" fill="url(#card)" stroke="#24384A"/>
+      <text x="18" y="34" class="label" font-size="20">Charlotte de Witte</text><text x="18" y="60" class="tiny">Atmosphere · 22:00–23:30 · Upcoming</text>
+      <rect x="192" y="22" width="96" height="46" rx="16" class="accent"/><text x="218" y="51" font-family="Inter,Arial" font-size="14" font-weight="900" fill="#041018">Going</text>
+      <text x="18" y="94" font-family="Inter,Arial" font-size="13" font-weight="900" fill="#FF8FA3">⚠ Conflicts with Martin Garrix, 23:15–00:45</text>
+      <text x="18" y="116" class="tiny">4 interested</text>
+    </g>
+    <g transform="translate(30 462)">
+      <rect width="312" height="118" rx="22" fill="url(#card)" stroke="#24384A"/>
+      <text x="18" y="34" class="label" font-size="20">Martin Garrix</text><text x="18" y="60" class="tiny">Mainstage · 23:15–00:45 · Upcoming</text>
+      <rect x="192" y="22" width="96" height="46" rx="16" class="accent"/><text x="218" y="51" font-family="Inter,Arial" font-size="14" font-weight="900" fill="#041018">Going</text>
+      <text x="18" y="96" class="tiny">Pending sync</text>
+    </g>
+    <g transform="translate(30 608)">
+      <rect width="312" height="58" rx="18" fill="#241B2A" stroke="#FF8FA3"/>
+      <text x="18" y="36" class="tiny" fill="#FF8FA3">Cancelled sets stay visible with remove action</text>
+    </g>
+    <g transform="translate(14 694)">
+      <rect width="344" height="72" fill="#0B1420"/>
+      <text x="28" y="43" class="tiny">Now</text><text x="92" y="43" class="tiny">Schedule</text><text x="174" y="43" class="tiny" fill="#18D2FF">My Plan</text><text x="254" y="43" class="tiny">Group</text><text x="304" y="43" class="tiny">Profile</text>
+    </g>
+  </g>
+</svg>
