@@ -4,7 +4,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="theme-color" content="#081018" />
-    <title>Tomorrowland Scheduler</title>
+    <title>Tomorrowland Scheduler — Live Preview</title>
     <style>
       :root {
         --bg: #081018;
@@ -22,73 +22,103 @@
       }
 
       * { box-sizing: border-box; }
-      html, body { margin: 0; min-height: 100%; background: var(--bg); color: var(--text); }
-      body { font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; }
-      button, input { font: inherit; }
-      button { cursor: pointer; }
-
-      .app {
+      body {
+        margin: 0;
         min-height: 100vh;
-        background:
-          radial-gradient(circle at 18% 0%, rgba(24, 210, 255, 0.22), transparent 26rem),
-          radial-gradient(circle at 92% 12%, rgba(124, 77, 255, 0.3), transparent 28rem),
-          linear-gradient(135deg, #070d15, #111b2a 55%, #190b2d);
-      }
-
-      .shell {
-        width: min(1120px, 100%);
-        margin: 0 auto;
-        padding: 18px 14px 92px;
-      }
-
-      .topbar {
-        display: grid;
-        gap: 12px;
-        padding: 10px 2px 16px;
-      }
-
-      h1 { margin: 0; font-size: clamp(2rem, 7vw, 4.8rem); line-height: 0.95; letter-spacing: -0.06em; }
-      .subtitle { max-width: 780px; margin: 0; color: var(--muted); font-size: 1rem; line-height: 1.45; }
-      .chip-row, .day-row, .filter-row, .meta-row { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
-      .chip { width: fit-content; border-radius: 999px; padding: 7px 12px; color: #061018; background: var(--green); font-size: 0.78rem; font-weight: 950; }
-      .chip.offline { background: var(--yellow); }
-      .chip.syncing { background: var(--accent); }
-      .pill, .filter {
-        min-height: 44px;
-        border: 0;
-        border-radius: 999px;
-        padding: 0 16px;
-        background: var(--panel-2);
         color: var(--text);
-        font-weight: 900;
+        background:
+          radial-gradient(circle at 20% 10%, rgba(24, 210, 255, 0.24), transparent 28rem),
+          radial-gradient(circle at 85% 20%, rgba(124, 77, 255, 0.28), transparent 30rem),
+          linear-gradient(135deg, #070d15, #111b2a 55%, #190b2d);
+        font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
       }
-      .pill.active, .filter.active { background: var(--violet); }
 
-      .layout { display: grid; grid-template-columns: minmax(0, 1fr) 320px; gap: 18px; align-items: start; }
-      .main, .side-panel {
-        border: 1px solid rgba(255,255,255,0.08);
-        border-radius: 28px;
-        background: rgba(8, 16, 24, 0.76);
-        box-shadow: 0 24px 70px rgba(0,0,0,0.28);
+      .page {
+        width: min(1200px, 100%);
+        margin: 0 auto;
+        padding: 36px 18px 48px;
+      }
+
+      .hero { margin-bottom: 28px; }
+      .eyebrow {
+        color: var(--accent);
+        font-weight: 900;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+      }
+      h1 {
+        margin: 8px 0 10px;
+        font-size: clamp(2.4rem, 7vw, 5.2rem);
+        line-height: 0.95;
+      }
+      .hero p {
+        max-width: 780px;
+        margin: 0;
+        color: var(--muted);
+        font-size: clamp(1rem, 2vw, 1.25rem);
+        line-height: 1.55;
+      }
+
+      .preview-grid {
+        display: grid;
+        grid-template-columns: repeat(3, minmax(280px, 1fr));
+        gap: 28px;
+        align-items: start;
+      }
+
+      .phone {
+        width: 100%;
+        max-width: 372px;
+        min-height: 780px;
+        margin: 0 auto;
+        padding: 14px;
+        border-radius: 42px;
+        background: #05090f;
+        box-shadow: 0 28px 70px rgba(0, 0, 0, 0.45);
+      }
+
+      .screen {
+        min-height: 752px;
+        padding: 28px 16px 82px;
+        border-radius: 34px;
+        background: linear-gradient(180deg, #0b1420, var(--bg));
+        position: relative;
         overflow: hidden;
       }
-      .main-header, .side-panel { padding: 16px; }
-      .main-header { display: grid; gap: 12px; border-bottom: 1px solid var(--border); background: rgba(11,20,32,0.88); position: sticky; top: 0; z-index: 4; }
-      .screen-title { margin: 0; font-size: clamp(1.55rem, 5vw, 2.5rem); letter-spacing: -0.04em; }
-      .search {
-        width: 100%;
-        min-height: 50px;
-        border: 0;
-        border-radius: 16px;
-        padding: 0 16px;
-        color: var(--text);
-        background: var(--panel-2);
-        font-weight: 800;
+
+      .speaker {
+        width: 82px;
+        height: 8px;
+        border-radius: 999px;
+        background: #26384a;
+        margin: -14px auto 28px;
       }
-      .search::placeholder { color: #9aa8b5; }
-      .list { height: min(66vh, 720px); overflow: auto; padding: 14px; scroll-behavior: smooth; }
-      .section-title { margin: 20px 0 12px; font-size: 1.2rem; font-weight: 950; }
-      .hour { position: sticky; top: -14px; z-index: 2; margin: 12px -14px 10px; padding: 8px 14px; background: rgba(8,16,24,0.94); color: var(--muted); font-weight: 950; border-bottom: 1px solid rgba(255,255,255,0.06); }
+
+      .topbar { display: grid; gap: 9px; margin-bottom: 18px; }
+      .screen-title { margin: 0; font-size: 1.55rem; font-weight: 950; }
+      .chip {
+        width: fit-content;
+        border-radius: 999px;
+        padding: 7px 12px;
+        color: #061018;
+        background: var(--green);
+        font-size: 0.78rem;
+        font-weight: 950;
+      }
+      .chip.offline { background: var(--yellow); }
+      .days, .filters, .tabs, .signals { display: flex; gap: 8px; align-items: center; }
+      .days { margin-bottom: 24px; }
+      .pill {
+        min-height: 42px;
+        border-radius: 999px;
+        padding: 11px 16px;
+        background: var(--panel-2);
+        color: var(--text);
+        font-size: 0.86rem;
+        font-weight: 900;
+      }
+      .pill.active { background: var(--violet); }
+      .section-title { margin: 22px 0 12px; font-size: 1.32rem; font-weight: 950; }
       .card {
         margin-bottom: 12px;
         padding: 14px;
@@ -96,14 +126,13 @@
         border-radius: 22px;
         background: linear-gradient(180deg, #122234, #0f1a27);
       }
-      .card.cancelled { opacity: 0.72; border-color: var(--danger); }
-      .card-top { display: flex; gap: 12px; align-items: flex-start; }
+      .card-row { display: flex; gap: 12px; align-items: flex-start; }
       .card-main { flex: 1; min-width: 0; }
       .artist { margin: 0; font-size: 1.18rem; font-weight: 950; }
-      .meta { margin: 6px 0 0; color: #d8f3ff; font-weight: 850; }
-      .genre { margin: 5px 0 0; color: var(--subtle); font-size: 0.92rem; }
+      .meta { margin: 6px 0 0; color: #d8f3ff; font-size: 0.87rem; font-weight: 850; }
+      .genre { margin: 5px 0 0; color: var(--subtle); font-size: 0.84rem; }
       .want {
-        min-width: 112px;
+        min-width: 102px;
         min-height: 48px;
         border: 0;
         border-radius: 16px;
@@ -113,281 +142,188 @@
         font-weight: 950;
       }
       .want.saved { color: #041018; background: var(--accent); }
-      .signals { display: flex; flex-wrap: wrap; align-items: center; gap: 7px; margin-top: 12px; }
-      .avatar { width: 28px; height: 28px; display: grid; place-items: center; border-radius: 50%; color: #061018; background: var(--yellow); font-size: 0.78rem; font-weight: 950; }
-      .signal-text { color: var(--muted); font-weight: 850; }
-      .pending { color: var(--yellow); font-weight: 900; }
-      .conflict { color: var(--danger); font-weight: 900; }
-      .empty { padding: 44px 18px; color: var(--muted); text-align: center; font-weight: 800; }
-      .summary { display: grid; gap: 8px; margin-bottom: 14px; border-radius: 22px; padding: 16px; background: var(--panel-2); }
-      .summary strong { font-size: 1.15rem; }
-      .side-panel { position: sticky; top: 18px; display: grid; gap: 14px; }
-      .side-panel h2 { margin: 0; font-size: 1.3rem; }
-      .side-panel p { margin: 0; color: var(--muted); line-height: 1.45; }
-      .mini-list { display: grid; gap: 10px; }
-      .mini-card { border: 1px solid var(--border); border-radius: 18px; padding: 12px; background: #111e2c; }
-      .mini-card strong { display: block; margin-bottom: 4px; }
-      .tabbar {
-        position: fixed;
-        left: 50%;
-        bottom: 14px;
-        transform: translateX(-50%);
-        width: min(720px, calc(100% - 20px));
-        min-height: 66px;
+      .signals { flex-wrap: wrap; margin-top: 12px; }
+      .avatar {
+        width: 28px;
+        height: 28px;
         display: grid;
-        grid-template-columns: repeat(5, 1fr);
-        gap: 4px;
-        padding: 8px;
+        place-items: center;
+        border-radius: 50%;
+        color: #061018;
+        background: var(--yellow);
+        font-size: 0.78rem;
+        font-weight: 950;
+      }
+      .signal-text { color: var(--muted); font-size: 0.84rem; font-weight: 850; }
+      .pending { color: var(--yellow); font-size: 0.82rem; font-weight: 900; }
+      .conflict { color: var(--danger); font-size: 0.82rem; font-weight: 900; }
+      .compact-card {
+        padding: 14px 16px;
         border: 1px solid var(--border);
-        border-radius: 24px;
-        background: rgba(11,20,32,0.96);
-        box-shadow: 0 20px 60px rgba(0,0,0,0.38);
-        backdrop-filter: blur(18px);
-        z-index: 8;
+        border-radius: 18px;
+        background: #111e2c;
       }
-      .tab { border: 0; border-radius: 18px; background: transparent; color: var(--subtle); font-size: 0.8rem; font-weight: 950; }
-      .tab.active { color: var(--accent); background: rgba(24,210,255,0.1); }
+      .compact-card strong { display: block; font-size: 1rem; margin-bottom: 5px; }
+      .search {
+        width: 100%;
+        min-height: 50px;
+        margin-bottom: 12px;
+        border: 0;
+        border-radius: 16px;
+        padding: 0 16px;
+        color: var(--text);
+        background: var(--panel-2);
+        font: inherit;
+        font-weight: 800;
+      }
+      .filters { margin-bottom: 20px; overflow: hidden; }
+      .hour { margin: 16px 0 8px; color: var(--muted); font-size: 0.86rem; font-weight: 900; }
+      .summary {
+        margin: 18px 0 22px;
+        border-radius: 22px;
+        padding: 18px 20px;
+        background: var(--panel-2);
+      }
+      .summary strong { display: block; font-size: 1.15rem; margin-bottom: 6px; }
+      .cancelled {
+        margin-top: 18px;
+        border: 1px solid var(--danger);
+        border-radius: 18px;
+        padding: 17px 16px;
+        color: var(--danger);
+        background: #241b2a;
+        font-size: 0.88rem;
+        font-weight: 900;
+      }
+      .tabs {
+        position: absolute;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        height: 72px;
+        justify-content: space-around;
+        border-top: 1px solid var(--border);
+        background: #0b1420;
+      }
+      .tab {
+        color: var(--subtle);
+        font-size: 0.72rem;
+        font-weight: 950;
+      }
+      .tab.active { color: var(--accent); }
 
-      @media (max-width: 860px) {
-        .shell { padding-inline: 10px; }
-        .layout { grid-template-columns: 1fr; }
-        .side-panel { position: static; }
-        .list { height: calc(100vh - 330px); min-height: 430px; }
-        .card-top { align-items: stretch; }
-        .want { min-width: 104px; }
+      .actions {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 12px;
+        margin-top: 28px;
       }
-      @media (max-width: 520px) {
-        .subtitle { display: none; }
-        .main, .side-panel { border-radius: 22px; }
-        .main-header { padding: 13px; }
-        .list { padding: 10px; height: calc(100vh - 306px); }
-        .card { padding: 12px; border-radius: 18px; }
-        .card-top { flex-direction: column; }
-        .want { width: 100%; }
-        .tab { font-size: 0.68rem; }
+      .action {
+        display: inline-flex;
+        align-items: center;
+        min-height: 48px;
+        border-radius: 999px;
+        padding: 0 18px;
+        color: #041018;
+        background: var(--accent);
+        font-weight: 950;
+        text-decoration: none;
+      }
+      .action.secondary {
+        color: var(--text);
+        background: rgba(255,255,255,0.12);
+        border: 1px solid rgba(255,255,255,0.22);
+      }
+
+      @media (max-width: 1040px) {
+        .preview-grid { grid-template-columns: 1fr; }
+        .phone { max-width: 390px; }
       }
     </style>
   </head>
   <body>
-    <div class="app">
-      <div class="shell">
-        <header class="topbar">
-          <div class="chip-row"><span class="chip" id="syncChip">Synced · Europe/Brussels</span><span class="chip syncing" id="countChip">0 sets today</span></div>
-          <h1>Tomorrowland Scheduler</h1>
-          <p class="subtitle">Interactive live web app preview: switch days, search DJs, filter stages/genres, save sets, see group picks, and scroll every DJ playing that day.</p>
-        </header>
-
-        <div class="layout">
-          <main class="main">
-            <section class="main-header">
-              <h2 class="screen-title" id="screenTitle">Schedule</h2>
-              <div class="day-row" id="dayRow" aria-label="Festival days"></div>
-              <input class="search" id="search" placeholder="Search artists, stages, genres" autocomplete="off" />
-              <div class="filter-row" id="filterRow" aria-label="Filters"></div>
-            </section>
-            <section class="list" id="content" aria-live="polite"></section>
-          </main>
-
-          <aside class="side-panel" id="sidePanel"></aside>
+    <main class="page">
+      <section class="hero">
+        <div class="eyebrow">Live web preview</div>
+        <h1>Tomorrowland Scheduler</h1>
+        <p>Preview the Expo MVP visual direction in-browser: Now-first discovery, searchable timetable, optimistic saved sets, group interest, offline state, and conflict warnings.</p>
+        <div class="actions">
+          <a class="action" href="./ui-preview.svg">Open SVG mockup</a>
+          <a class="action secondary" href="https://github.com/" aria-label="Open the GitHub repository configured for this Pages preview">GitHub repo</a>
         </div>
-      </div>
-      <nav class="tabbar" id="tabbar" aria-label="Primary navigation"></nav>
-    </div>
+      </section>
 
-    <script>
-      const festival = { name: 'Tomorrowland 2026', timezone: 'Europe/Brussels' };
-      const days = [
-        { id: 'fri-1', label: 'Fri 17', date: '2026-07-17' },
-        { id: 'sat-1', label: 'Sat 18', date: '2026-07-18' },
-        { id: 'sun-1', label: 'Sun 19', date: '2026-07-19' },
-      ];
-      const stages = ['Mainstage', 'Atmosphere', 'Freedom', 'CORE', 'Crystal Garden', 'The Library'];
-      const artists = [
-        ['amelie', 'Amelie Lens', 'Techno', 96], ['charlotte', 'Charlotte de Witte', 'Techno', 98],
-        ['armin', 'Armin van Buuren', 'Trance', 95], ['martin', 'Martin Garrix', 'Progressive', 99],
-        ['lost', 'Lost Frequencies', 'House', 92], ['solomun', 'Solomun', 'House', 90],
-        ['tale', 'Tale Of Us', 'Melodic Techno', 94], ['nina', 'Nina Kraviz', 'Techno', 88],
-        ['dimitri', 'Dimitri Vegas & Like Mike', 'Big Room', 97], ['hardwell', 'Hardwell', 'Big Room', 93],
-        ['indira', 'Indira Paganotto', 'Psytechno', 86], ['keinemusik', 'Keinemusik', 'Afro House', 91],
-        ['hi-lo', 'HI-LO', 'Techno', 84], ['mau', 'Mau P', 'Tech House', 87],
-        ['amelie-b', 'Anyma', 'Melodic Techno', 95], ['kolsch', 'Kölsch', 'Melodic House', 83],
-        ['vintage', 'Vintage Culture', 'House', 89], ['purple', 'Purple Disco Machine', 'Disco House', 88],
-        ['sub', 'Sub Zero Project', 'Hardstyle', 82], ['miss', 'Miss Monique', 'Progressive', 80],
-      ];
-      const members = ['Anna', 'Ben', 'Sam', 'Mia', 'Noah'];
-      const baseSlots = [
-        ['13:00', '14:00'], ['13:30', '14:45'], ['14:00', '15:15'], ['14:30', '16:00'], ['15:00', '16:15'],
-        ['16:15', '17:30'], ['17:00', '18:30'], ['18:00', '19:00'], ['19:00', '20:30'], ['20:00', '21:30'],
-        ['21:00', '22:15'], ['22:00', '23:30'], ['23:15', '00:45'], ['00:30', '01:45'],
-      ];
-      const tabs = ['Now', 'Schedule', 'My Plan', 'Group', 'Profile'];
-      const storageKey = 'tomorrowland.webapp.state.v2';
-      const savedState = JSON.parse(localStorage.getItem(storageKey) || '{}');
-      let state = {
-        tab: savedState.tab || 'Schedule',
-        dayId: savedState.dayId || days[0].id,
-        saved: new Set(savedState.saved || ['fri-1-amelie', 'fri-1-charlotte']),
-        pending: new Set(savedState.pending || []),
-        query: savedState.query || '',
-        filters: new Set(savedState.filters || []),
-        offline: false,
-      };
-
-      const artistMap = new Map(artists.map(([id, name, genre, popularity]) => [id, { id, name, genre, popularity }]));
-      const performances = days.flatMap((day, dayIndex) => artists.map(([artistId], index) => {
-        const slot = baseSlots[(index + dayIndex * 2) % baseSlots.length];
-        const stage = stages[(index + dayIndex) % stages.length];
-        return {
-          id: `${day.id}-${artistId}`,
-          dayId: day.id,
-          artistId,
-          stage,
-          startsAt: `${day.date}T${slot[0]}:00+02:00`,
-          endsAt: `${day.date}T${slot[1]}:00+02:00`,
-          cancelled: index === 18 && day.id === 'sun-1',
-          interested: (index + dayIndex) % 6,
-          staleMinutes: index % 7 === 0 ? 12 : 0,
-        };
-      })).sort((a, b) => new Date(a.startsAt) - new Date(b.startsAt));
-
-      function persist() {
-        localStorage.setItem(storageKey, JSON.stringify({
-          tab: state.tab,
-          dayId: state.dayId,
-          saved: [...state.saved],
-          pending: [...state.pending],
-          query: state.query,
-          filters: [...state.filters],
-        }));
-      }
-      function formatTime(value) {
-        return new Intl.DateTimeFormat('en-GB', { hour: '2-digit', minute: '2-digit', timeZone: festival.timezone }).format(new Date(value));
-      }
-      function statusFor(performance) {
-        if (performance.cancelled) return 'Cancelled';
-        const now = new Date('2026-07-17T19:45:00+02:00');
-        const starts = new Date(performance.startsAt);
-        const ends = new Date(performance.endsAt);
-        if (starts <= now && now <= ends) return 'Live now';
-        return starts > now ? 'Upcoming' : 'Ended';
-      }
-      function overlaps(a, b) {
-        return Math.min(+new Date(a.endsAt), +new Date(b.endsAt)) - Math.max(+new Date(a.startsAt), +new Date(b.startsAt)) > 5 * 60 * 1000;
-      }
-      function getDayPerformances() { return performances.filter((p) => p.dayId === state.dayId); }
-      function getSavedPerformances() { return performances.filter((p) => state.saved.has(p.id)); }
-      function getVisiblePerformances() {
-        return getDayPerformances().filter((p) => {
-          const artist = artistMap.get(p.artistId);
-          const haystack = `${artist.name} ${artist.genre} ${p.stage}`.toLowerCase();
-          const queryMatch = haystack.includes(state.query.toLowerCase());
-          const filterMatch = !state.filters.size || state.filters.has(p.stage) || state.filters.has(artist.genre) || (state.filters.has('My picks') && state.saved.has(p.id)) || (state.filters.has('Group picks') && p.interested > 0);
-          return queryMatch && filterMatch;
-        });
-      }
-      function conflictFor(performance) {
-        if (!state.saved.has(performance.id)) return '';
-        const conflict = getSavedPerformances().find((other) => other.id !== performance.id && overlaps(performance, other));
-        if (!conflict) return '';
-        const artist = artistMap.get(conflict.artistId);
-        return `Conflicts with ${artist.name}, ${formatTime(conflict.startsAt)}–${formatTime(conflict.endsAt)} at ${conflict.stage}.`;
-      }
-      function groupAvatars(count) {
-        return members.slice(0, Math.min(3, count)).map((name) => `<span class="avatar" title="${name}">${name[0]}</span>`).join('');
-      }
-      function card(performance) {
-        const artist = artistMap.get(performance.artistId);
-        const saved = state.saved.has(performance.id);
-        const pending = state.pending.has(performance.id);
-        const conflict = conflictFor(performance);
-        return `<article class="card ${performance.cancelled ? 'cancelled' : ''}">
-          <div class="card-top">
-            <div class="card-main">
-              <h3 class="artist">${artist.name}</h3>
-              <p class="meta">${performance.stage} · ${formatTime(performance.startsAt)}–${formatTime(performance.endsAt)} · ${statusFor(performance)}</p>
-              <p class="genre">${artist.genre}</p>
-            </div>
-            <button class="want ${saved ? 'saved' : ''}" data-toggle="${performance.id}">${saved ? 'Going' : 'I want to go'}</button>
+      <section class="preview-grid" aria-label="Mobile screen previews">
+        <article class="phone" aria-label="Now screen preview">
+          <div class="screen">
+            <div class="speaker"></div>
+            <header class="topbar">
+              <h2 class="screen-title">Tomorrowland</h2>
+              <span class="chip">Synced · Europe/Brussels</span>
+            </header>
+            <nav class="days" aria-label="Festival days"><span class="pill active">Fri 17</span><span class="pill">Sat 18</span><span class="pill">Sun 19</span></nav>
+            <h3 class="section-title">Playing now</h3>
+            <section class="card">
+              <div class="card-row">
+                <div class="card-main"><h4 class="artist">Amelie Lens</h4><p class="meta">Atmosphere · 19:00–20:30 · Live now</p><p class="genre">Techno</p></div>
+                <button class="want saved">Going</button>
+              </div>
+              <div class="signals"><span class="avatar">A</span><span class="avatar">B</span><span class="signal-text">2 interested</span><span class="pending">Pending sync</span></div>
+            </section>
+            <h3 class="section-title">Starting soon</h3>
+            <section class="card">
+              <div class="card-row">
+                <div class="card-main"><h4 class="artist">Tale Of Us</h4><p class="meta">Freedom · 20:00–21:30 · Upcoming</p></div>
+                <button class="want">I want to go</button>
+              </div>
+              <div class="signals"><span class="avatar">A</span><span class="avatar">B</span><span class="avatar">S</span><span class="signal-text">3 interested</span></div>
+            </section>
+            <h3 class="section-title">Popular with your group</h3>
+            <section class="compact-card"><strong>Charlotte de Witte</strong><span class="signal-text">22:00 · Atmosphere · 4 interested</span></section>
+            <footer class="tabs"><span class="tab active">Now</span><span class="tab">Schedule</span><span class="tab">My Plan</span><span class="tab">Group</span><span class="tab">Profile</span></footer>
           </div>
-          <div class="signals">
-            ${groupAvatars(performance.interested)}
-            <span class="signal-text">${performance.interested ? `${performance.interested} interested` : 'No group picks yet'}</span>
-            ${performance.staleMinutes ? `<span class="pending">Last updated ${performance.staleMinutes} min ago</span>` : ''}
-            ${pending ? '<span class="pending">Pending sync</span>' : ''}
-            ${conflict ? `<span class="conflict">⚠ ${conflict}</span>` : ''}
-            ${performance.cancelled ? '<span class="conflict">This performance has been cancelled.</span>' : ''}
-          </div>
-        </article>`;
-      }
-      function groupedList(items) {
-        if (!items.length) return '<div class="empty">No sets match this view.</div>';
-        let lastHour = '';
-        return items.map((p) => {
-          const hour = formatTime(p.startsAt).slice(0, 2) + ':00';
-          const header = hour !== lastHour ? `<div class="hour">${hour}</div>` : '';
-          lastHour = hour;
-          return header + card(p);
-        }).join('');
-      }
-      function topGroupPicks(limit = 5) {
-        return [...getDayPerformances()].sort((a, b) => b.interested - a.interested || (state.saved.has(b.id) - state.saved.has(a.id)) || new Date(a.startsAt) - new Date(b.startsAt)).slice(0, limit);
-      }
-      function renderHeader() {
-        document.getElementById('screenTitle').textContent = state.tab;
-        document.getElementById('syncChip').textContent = state.offline ? 'Offline — showing saved schedule' : 'Synced · Europe/Brussels';
-        document.getElementById('syncChip').className = `chip ${state.offline ? 'offline' : ''}`;
-        document.getElementById('countChip').textContent = `${getDayPerformances().length} DJs today`;
-        document.getElementById('dayRow').innerHTML = days.map((day) => `<button class="pill ${day.id === state.dayId ? 'active' : ''}" data-day="${day.id}">${day.label}</button>`).join('');
-        document.getElementById('search').value = state.query;
-        document.getElementById('search').style.display = state.tab === 'Schedule' ? 'block' : 'none';
-        const stageFilters = ['My picks', 'Group picks', ...stages, ...new Set(artists.map(([, , genre]) => genre))];
-        document.getElementById('filterRow').style.display = state.tab === 'Schedule' ? 'flex' : 'none';
-        document.getElementById('filterRow').innerHTML = stageFilters.map((filter) => `<button class="filter ${state.filters.has(filter) ? 'active' : ''}" data-filter="${filter}">${filter}</button>`).join('');
-        document.getElementById('tabbar').innerHTML = tabs.map((tab) => `<button class="tab ${tab === state.tab ? 'active' : ''}" data-tab="${tab}">${tab}</button>`).join('');
-      }
-      function renderContent() {
-        const content = document.getElementById('content');
-        if (state.tab === 'Now') {
-          const day = getDayPerformances();
-          const live = day.filter((p) => statusFor(p) === 'Live now').sort((a, b) => b.interested - a.interested || new Date(a.startsAt) - new Date(b.startsAt));
-          const soon = day.filter((p) => statusFor(p) === 'Upcoming').slice(0, 6);
-          content.innerHTML = `<h3 class="section-title">Playing now</h3>${live.length ? live.map(card).join('') : '<div class="empty">No performances are live right now.</div>'}<h3 class="section-title">Starting soon</h3>${soon.map(card).join('')}<h3 class="section-title">Popular with your group today</h3>${topGroupPicks(3).map(card).join('')}`;
-        } else if (state.tab === 'Schedule') {
-          content.innerHTML = groupedList(getVisiblePerformances());
-        } else if (state.tab === 'My Plan') {
-          const saved = getSavedPerformances().filter((p) => p.dayId === state.dayId);
-          const conflictCount = saved.filter((p) => conflictFor(p)).length;
-          content.innerHTML = `<section class="summary"><strong>${saved.length} saved sets</strong><span class="signal-text">${conflictCount} conflicts · ${state.pending.size} pending sync</span></section>${saved.length ? groupedList(saved) : '<div class="empty">You have not picked any sets for this day yet. Open Schedule to add DJs.</div>'}`;
-        } else if (state.tab === 'Group') {
-          content.innerHTML = `<section class="summary"><strong>Rave Crew · 5 members</strong><span class="signal-text">Active group drives counts, avatars, rankings, and top picks.</span></section><h3 class="section-title">Top group picks</h3>${topGroupPicks(10).map(card).join('')}`;
-        } else {
-          content.innerHTML = `<section class="summary"><strong>Alex Festivalgoer</strong><span class="signal-text">alex@example.com · ${festival.name}</span></section><section class="summary"><strong>Sync status</strong><span class="signal-text">${state.pending.size} pending mutations · cached schedule available</span></section><button class="pill" id="offlineToggle">${state.offline ? 'Go online' : 'Simulate offline mode'}</button>`;
-        }
-      }
-      function renderSidePanel() {
-        const saved = getSavedPerformances().filter((p) => p.dayId === state.dayId);
-        document.getElementById('sidePanel').innerHTML = `<h2>Full-day planner</h2><p>Use Schedule to scroll all ${getDayPerformances().length} DJs for the selected day at the same time. Your picks persist in this browser.</p><div class="summary"><strong>${saved.length} saved today</strong><span class="signal-text">${state.pending.size} pending sync · ${state.filters.size} filters</span></div><h2>Top group picks</h2><div class="mini-list">${topGroupPicks(4).map((p) => { const artist = artistMap.get(p.artistId); return `<div class="mini-card"><strong>${artist.name}</strong><span class="signal-text">${formatTime(p.startsAt)} · ${p.stage} · ${p.interested} interested</span></div>`; }).join('')}</div>`;
-      }
-      function render() { persist(); renderHeader(); renderContent(); renderSidePanel(); }
+        </article>
 
-      document.addEventListener('click', (event) => {
-        const day = event.target.closest('[data-day]');
-        const tab = event.target.closest('[data-tab]');
-        const filter = event.target.closest('[data-filter]');
-        const toggle = event.target.closest('[data-toggle]');
-        const offline = event.target.closest('#offlineToggle');
-        if (day) state.dayId = day.dataset.day;
-        if (tab) state.tab = tab.dataset.tab;
-        if (filter) state.filters.has(filter.dataset.filter) ? state.filters.delete(filter.dataset.filter) : state.filters.add(filter.dataset.filter);
-        if (toggle) {
-          state.saved.has(toggle.dataset.toggle) ? state.saved.delete(toggle.dataset.toggle) : state.saved.add(toggle.dataset.toggle);
-          if (state.offline) state.pending.add(toggle.dataset.toggle); else state.pending.delete(toggle.dataset.toggle);
-        }
-        if (offline) state.offline = !state.offline;
-        if (day || tab || filter || toggle || offline) render();
-      });
-      document.getElementById('search').addEventListener('input', (event) => { state.query = event.target.value; render(); });
-      render();
-    </script>
+        <article class="phone" aria-label="Schedule screen preview">
+          <div class="screen">
+            <div class="speaker"></div>
+            <header class="topbar"><h2 class="screen-title">Schedule</h2><span class="chip offline">Offline — showing saved schedule</span></header>
+            <nav class="days" aria-label="Festival days"><span class="pill active">Fri 17</span><span class="pill">Sat 18</span><span class="pill">Sun 19</span></nav>
+            <input class="search" value="Search artists, stages, genres" readonly aria-label="Search artists stages genres" />
+            <div class="filters"><span class="pill active">All</span><span class="pill">My picks</span><span class="pill">Mainstage</span></div>
+            <div class="hour">19:00</div>
+            <section class="card">
+              <div class="card-row"><div class="card-main"><h4 class="artist">Amelie Lens</h4><p class="meta">Atmosphere · 19:00–20:30 · Live now</p></div><button class="want saved">Going</button></div>
+              <div class="signals"><span class="signal-text">2 interested · Last updated 12 min ago</span></div>
+            </section>
+            <div class="hour">20:00</div>
+            <section class="card">
+              <div class="card-row"><div class="card-main"><h4 class="artist">Tale Of Us</h4><p class="meta">Freedom · 20:00–21:30 · Upcoming</p></div><button class="want">I want to go</button></div>
+              <div class="signals"><span class="signal-text">3 interested</span></div>
+            </section>
+            <footer class="tabs"><span class="tab">Now</span><span class="tab active">Schedule</span><span class="tab">My Plan</span><span class="tab">Group</span><span class="tab">Profile</span></footer>
+          </div>
+        </article>
+
+        <article class="phone" aria-label="My Plan screen preview">
+          <div class="screen">
+            <div class="speaker"></div>
+            <header class="topbar"><h2 class="screen-title">My Plan</h2><span class="chip">Synced · Europe/Brussels</span></header>
+            <nav class="days" aria-label="Festival days"><span class="pill active">Fri 17</span><span class="pill">Sat 18</span><span class="pill">Sun 19</span></nav>
+            <section class="summary"><strong>3 saved sets</strong><span class="signal-text">1 conflict · 1 pending sync</span></section>
+            <section class="card">
+              <div class="card-row"><div class="card-main"><h4 class="artist">Charlotte de Witte</h4><p class="meta">Atmosphere · 22:00–23:30 · Upcoming</p></div><button class="want saved">Going</button></div>
+              <div class="signals"><span class="conflict">⚠ Conflicts with Martin Garrix, 23:15–00:45</span><span class="signal-text">4 interested</span></div>
+            </section>
+            <section class="card">
+              <div class="card-row"><div class="card-main"><h4 class="artist">Martin Garrix</h4><p class="meta">Mainstage · 23:15–00:45 · Upcoming</p></div><button class="want saved">Going</button></div>
+              <div class="signals"><span class="pending">Pending sync</span></div>
+            </section>
+            <div class="cancelled">Cancelled sets stay visible with remove action</div>
+            <footer class="tabs"><span class="tab">Now</span><span class="tab">Schedule</span><span class="tab active">My Plan</span><span class="tab">Group</span><span class="tab">Profile</span></footer>
+          </div>
+        </article>
+      </section>
+    </main>
   </body>
 </html>
